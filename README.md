@@ -5,6 +5,19 @@ A api insere as informações de cotação de compra de produtos em uma base de 
 - cotacoes
 - produtos
 
+## Exemplo de Requisição
+- Request **POST**: http://localhost:8080/cotacao
+```JSON
+{
+    "produtos": [
+        {"nome": "arroz", "quantidade": 10},
+        {"nome": "feijão", "quantidade": 5},
+        {"nome": "macarrão", "quantidade": 8}
+    ],
+    "status": "ABERTA"
+}
+```
+
 # Front
 Frontend React gerenciado diretamente pelo Spring Boot
 
