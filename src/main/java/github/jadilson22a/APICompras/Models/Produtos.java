@@ -1,59 +1,25 @@
 package github.jadilson22a.APICompras.Models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "produtos")
+@Data
 public class Produtos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "nome", length = 250)
     private String nome;
+
+    @Column(name = "quantidade", precision = 10, scale = 0)
     private Integer quantidade;
 
     @ManyToOne
     @JoinColumn(name = "cotacao_id")
     private Cotacao cotacao;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public Cotacao getCotacao() {
-        return cotacao;
-    }
-
-    public void setCotacao(Cotacao cotacao) {
-        this.cotacao = cotacao;
-    }
-
-    @Override
-    public String toString() {
-        return "Produtos{" +
-                ", nome='" + nome + '\'' +
-                ", quantidade=" + quantidade +
-                '}';
-    }
 
 }

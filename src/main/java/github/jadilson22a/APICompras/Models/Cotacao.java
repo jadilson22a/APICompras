@@ -1,11 +1,13 @@
 package github.jadilson22a.APICompras.Models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Table(name= "cotacoes")
+@Data
 public class Cotacao {
 
     @Id
@@ -16,30 +18,8 @@ public class Cotacao {
     @OneToMany(mappedBy = "cotacao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Produtos> produtos;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private CotacaoStatus status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public List<Produtos> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produtos> produtos) {
-        this.produtos = produtos;
-    }
-
-    public CotacaoStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(CotacaoStatus status) {
-        this.status = status;
-    }
+    
 }
