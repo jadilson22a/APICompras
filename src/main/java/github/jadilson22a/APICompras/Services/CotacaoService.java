@@ -5,6 +5,8 @@ import github.jadilson22a.APICompras.Models.Produtos;
 import github.jadilson22a.APICompras.Repositorys.CotacaoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class CotacaoService {
 
@@ -18,6 +20,9 @@ public class CotacaoService {
         for (Produtos p : cotacao.getProdutos()) {
             p.setCotacao(cotacao); // seta a relação de volta
         }
+
+        cotacao.setDataCriada(LocalDate.now());
+
         repository.save(cotacao);
     }
 }

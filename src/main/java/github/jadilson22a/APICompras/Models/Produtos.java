@@ -3,9 +3,10 @@ package github.jadilson22a.APICompras.Models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table(name = "produtos")
-@Data
 public class Produtos {
 
     @Id
@@ -22,4 +23,42 @@ public class Produtos {
     @JoinColumn(name = "cotacao_id")
     private Cotacao cotacao;
 
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Fornecedores> fornecedores;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Cotacao getCotacao() {
+        return cotacao;
+    }
+
+    public void setCotacao(Cotacao cotacao) {
+        this.cotacao = cotacao;
+    }
+
+    public List<Fornecedores> getFornecedores() {
+        return fornecedores;
+    }
+
+    public void setFornecedores(List<Fornecedores> fornecedores) {
+        this.fornecedores = fornecedores;
+    }
 }
