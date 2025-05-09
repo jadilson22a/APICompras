@@ -15,7 +15,7 @@ public class Cotacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "id")
+    @Column(name = "data_atual")
     private LocalDate dataCriada;
 
     @OneToMany(mappedBy = "cotacao", cascade = CascadeType.ALL, orphanRemoval = true)

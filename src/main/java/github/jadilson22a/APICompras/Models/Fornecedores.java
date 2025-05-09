@@ -1,8 +1,10 @@
 package github.jadilson22a.APICompras.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -18,11 +20,12 @@ public class Fornecedores {
     private String nome;
 
     @Column(name = "preco", precision = 18, scale = 2)
-    private Double preco;
+    private BigDecimal preco;
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
-    private Integer produto;
+    @JsonIgnore
+    private Produtos produto;
 
     public Integer getId() {
         return id;
@@ -36,19 +39,19 @@ public class Fornecedores {
         this.nome = nome;
     }
 
-    public Double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
-    public Integer getProduto() {
+    public Produtos getProduto() {
         return produto;
     }
 
-    public void setProduto(Integer produto) {
+    public void setProduto(Produtos produto) {
         this.produto = produto;
     }
 }

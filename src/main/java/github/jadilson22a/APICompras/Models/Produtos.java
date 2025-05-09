@@ -1,5 +1,6 @@
 package github.jadilson22a.APICompras.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,11 +17,12 @@ public class Produtos {
     @Column(name = "nome", length = 250)
     private String nome;
 
-    @Column(name = "quantidade", precision = 10, scale = 0)
+    @Column(name = "quantidade", precision = 10)
     private Integer quantidade;
 
     @ManyToOne
     @JoinColumn(name = "cotacao_id")
+    @JsonIgnore
     private Cotacao cotacao;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
