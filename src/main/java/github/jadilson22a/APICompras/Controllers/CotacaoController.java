@@ -4,8 +4,12 @@ import github.jadilson22a.APICompras.Models.Cotacao;
 import github.jadilson22a.APICompras.Models.Fornecedores;
 import github.jadilson22a.APICompras.Models.Produtos;
 import github.jadilson22a.APICompras.Services.CotacaoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -20,8 +24,17 @@ public class CotacaoController {
 
     // métodos de inserção ------------------
     @PostMapping
-    public void inserirCotacao(@RequestBody Cotacao cotacao){
+    public ResponseEntity inserirCotacao(@RequestBody Cotacao cotacao){
         service.inserirCotacao(cotacao);
+
+        // Retorna POST URI: http://localhost:8080/cotacao
+        URI location = ServletUriComponentsBuilder
+                        .fromCurrentRequest()
+                        .path("")
+                        .buildAndExpand(cotacao)
+                        .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
     @PostMapping("/produtos/{idCotacao}")
