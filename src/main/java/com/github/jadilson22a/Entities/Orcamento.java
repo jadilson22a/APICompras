@@ -6,17 +6,17 @@ import java.util.Objects;
 public class Orcamento {
 	
 	private String nome;
-	private Integer prazo;
+	private String prazo;
 	private String pagamento;
 	private Incoterms incoterms;
 	private List<Sku> itens;
-	private Double valorTotal = somaValoresSku();
+	private Double valorTotal;
 	
 	public Orcamento() {
 		super();
 	}
 
-	public Orcamento(String nome, Integer prazo, String pagamento, Incoterms incoterms, List<Sku> itens) {
+	public Orcamento(String nome, String prazo, String pagamento, Incoterms incoterms, List<Sku> itens) {
 		super();
 		this.nome = nome;
 		this.prazo = prazo;
@@ -33,11 +33,11 @@ public class Orcamento {
 		this.nome = nome;
 	}
 
-	public Integer getPrazo() {
+	public String getPrazo() {
 		return prazo;
 	}
 
-	public void setPrazo(Integer prazo) {
+	public void setPrazo(String prazo) {
 		this.prazo = prazo;
 	}
 
@@ -66,17 +66,21 @@ public class Orcamento {
 	}
 
 	public Double getValorTotal() {
-		return valorTotal;
+		return somaValoresSku();
 	}
 
 	private Double somaValoresSku() {
-		Double valor = 0.0;
-		
-		for(Sku x: this.itens) {
-			valor = valor + x.getValor();
-		}
-		
-		return valor;
+		if (this.itens == null) return 0.0;
+
+	    Double valor = 0.0;
+
+	    for (Sku x : this.itens) {
+	        if (x.getValor() != null && x.getQuantidade() != null) {
+	            valor += x.getValor() * x.getQuantidade();
+	        }
+	    }
+
+	    return valor;
 	}
 
 	@Override

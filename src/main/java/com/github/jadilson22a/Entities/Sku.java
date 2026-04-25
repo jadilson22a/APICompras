@@ -13,7 +13,7 @@ public class Sku {
 		super();
 	}
 
-	public Sku(Integer codigo, String descricao, Double quantidade, Double valor, Integer requisicao, Integer linha) {
+	public Sku(Integer codigo, String descricao, Double quantidade, Double valor) {
 		super();
 		this.codigo = codigo;
 		this.descricao = descricao;
