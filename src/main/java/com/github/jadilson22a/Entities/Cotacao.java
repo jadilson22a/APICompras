@@ -15,20 +15,24 @@ public class Cotacao {
 	private boolean concluido = false;
 	private Tipo tipo;
 	private List<Orcamento> orcamentos;
-	private String vencedor;
 	private Integer pedido;
 	
 	public Cotacao() {
-		super();
 	}
 
-	public Cotacao(String id, List<Integer> requisicoes, Tipo tipo, List<Orcamento> orcamentos, String vencedor) {
-		super();
+	public Cotacao(String id, List<Integer> requisicoes, Tipo tipo, List<Orcamento> orcamentos) {
 		this.id = id;
 		this.requisicoes = requisicoes;
 		this.tipo = tipo;
 		this.orcamentos = orcamentos;
-		this.vencedor = vencedor;
+	}
+	
+	
+
+	public Cotacao(List<Integer> requisicoes, Tipo tipo, List<Orcamento> orcamentos) {
+		this.requisicoes = requisicoes;
+		this.tipo = tipo;
+		this.orcamentos = orcamentos;
 	}
 
 	public String getId() {
@@ -63,14 +67,6 @@ public class Cotacao {
 		this.orcamentos = orcamentos;
 	}
 
-	public String getVencedor() {
-		return vencedor;
-	}
-
-	public void setVencedor(String vencedor) {
-		this.vencedor = vencedor;
-	}
-
 	public boolean isConcluido() {
 		return concluido;
 	}
@@ -86,7 +82,7 @@ public class Cotacao {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(concluido, id, orcamentos, pedido, requisicoes, tipo, vencedor);
+		return Objects.hash(concluido, id, orcamentos, pedido, requisicoes, tipo);
 	}
 
 	@Override
@@ -100,10 +96,7 @@ public class Cotacao {
 		Cotacao other = (Cotacao) obj;
 		return concluido == other.concluido && Objects.equals(id, other.id)
 				&& Objects.equals(orcamentos, other.orcamentos) && Objects.equals(pedido, other.pedido)
-				&& Objects.equals(requisicoes, other.requisicoes) && tipo == other.tipo
-				&& Objects.equals(vencedor, other.vencedor);
+				&& Objects.equals(requisicoes, other.requisicoes) && tipo == other.tipo;
 	}
-	
-	
 
 }
