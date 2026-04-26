@@ -20,11 +20,12 @@ public class Cotacao {
 	public Cotacao() {
 	}
 
-	public Cotacao(String id, List<Integer> requisicoes, Tipo tipo, List<Orcamento> orcamentos) {
+	public Cotacao(String id, List<Integer> requisicoes, Tipo tipo, List<Orcamento> orcamentos, Integer pedido) {
 		this.id = id;
 		this.requisicoes = requisicoes;
 		this.tipo = tipo;
 		this.orcamentos = orcamentos;
+		this.pedido = pedido;
 	}
 	
 	
