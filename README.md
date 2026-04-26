@@ -99,18 +99,8 @@ Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
 ```env
 # MongoDB Configuration
-MONGO_HOST=localhost
-MONGO_PORT=27017
-MONGO_DATABASE=APICompras
 MONGO_USERNAME=seu_usuario
 MONGO_PASSWORD=sua_senha
-
-# Server Configuration
-SERVER_PORT=8080
-SERVER_SERVLET_CONTEXT_PATH=/api
-
-# Environment
-SPRING_PROFILES_ACTIVE=dev
 ```
 
 ### Arquivo application.properties
@@ -119,26 +109,12 @@ Ou configure diretamente em `src/main/resources/application.properties`:
 
 ```properties
 # MongoDB
-spring.data.mongodb.uri=mongodb://localhost:27017/APICompras
+spring.application.name=APICompras
+spring.mongodb.host=localhost
+spring.mongodb.port=27017
+spring.mongodb.database=compras
 spring.data.mongodb.username=
 spring.data.mongodb.password=
-
-# Server
-server.port=8080
-server.servlet.context-path=/api
-
-# Logging
-logging.level.root=INFO
-logging.level.com.github.jadilson22a=DEBUG
-```
-
-### Arquivo application-dev.properties
-
-Para desenvolvimento (`src/main/resources/application-dev.properties`):
-
-```properties
-spring.data.mongodb.uri=mongodb://localhost:27017/APICompras_dev
-logging.level.root=DEBUG
 ```
 
 ## 🚀 Como Executar
@@ -180,15 +156,12 @@ APICompras/
 │   │   ├── java/
 │   │   │   └── com/github/jadilson22a/
 │   │   │       ├── controller/    # Controladores REST
+|   |   |       ├── Dtos/          # Dto para proteção de entidades
 │   │   │       ├── service/       # Lógica de negócio
 │   │   │       ├── repository/    # Acesso a dados
-│   │   │       ├── model/         # Entidades/DTOs
-│   │   │       ├── config/        # Configurações
-│   │   │       └── exception/     # Exceções customizadas
+│   │   │       ├── model/         # Entidades
 │   │   └── resources/
 │   │       ├── application.properties
-│   │       ├── application-dev.properties
-│   │       └── application-prod.properties
 │   └── test/
 │       └── java/
 │           └── com/github/jadilson22a/
@@ -204,7 +177,7 @@ APICompras/
 
 ### Exemplo Base
 
-Todos os endpoints estão disponíveis em: `http://localhost:8080/api`
+Todos os endpoints estão disponíveis em: `http://localhost:8080/cotacao`
 
 ### Padrão de Respostas
 
@@ -228,18 +201,14 @@ Todos os endpoints estão disponíveis em: `http://localhost:8080/api`
 
 ### Documentação dos Endpoints
 
-Complete esta seção com seus endpoints específicos. Exemplo:
-
 ```
-GET    /compras              - Listar todas as compras
-GET    /compras/{id}         - Obter compra por ID
-POST   /compras              - Criar nova compra
-PUT    /compras/{id}         - Atualizar compra
-DELETE /compras/{id}         - Deletar compra
-
-GET    /compradores          - Listar compradores
-GET    /compradores/{id}     - Obter comprador por ID
-POST   /compradores          - Criar novo comprador
+POST   /cotacao                             - Criar uma nova cotacao
+DELETE /cotacao?id={id}                     - Deletar compra
+PUT    /cotacao?id={id}                     - Atualizar compra
+GET    /cotacao/id?id={id}                  - Busca por id
+GET    /cotacao/tudo                        - Busca tudo
+GET    /cotacao/requisicoes                 - Busca por requisicoes
+GET    /cotacao/estado?concluido={boolean}  - Busca por estado
 ```
 
 ## 🌍 Variáveis de Ambiente
@@ -248,41 +217,11 @@ POST   /compradores          - Criar novo comprador
 |----------|-----------|--------|------------|
 | `MONGO_HOST` | Host do MongoDB | localhost | Não |
 | `MONGO_PORT` | Porta do MongoDB | 27017 | Não |
-| `MONGO_DATABASE` | Nome do banco de dados | APICompras | Não |
+| `MONGO_DATABASE` | Nome do banco de dados | compras | Não |
 | `MONGO_USERNAME` | Usuário do MongoDB | - | Não |
 | `MONGO_PASSWORD` | Senha do MongoDB | - | Não |
 | `SERVER_PORT` | Porta da aplicação | 8080 | Não |
 | `SPRING_PROFILES_ACTIVE` | Profile ativo | dev | Não |
-
-## 🧪 Testes
-
-### Executar todos os testes
-
-```bash
-mvn test
-```
-
-### Executar testes com cobertura
-
-```bash
-mvn test jacoco:report
-```
-
-### Executar testes específicos
-
-```bash
-mvn test -Dtest=NomeDaTestClass
-```
-
-### Estrutura de Testes
-
-```
-src/test/java/com/github/jadilson22a/
-├── controller/    # Testes de API REST
-├── service/       # Testes de lógica de negócio
-├── repository/    # Testes de acesso a dados
-└── integration/   # Testes de integração
-```
 
 ## 📚 Dependências
 
